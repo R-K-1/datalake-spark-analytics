@@ -36,20 +36,16 @@ The analytics tables centers on the following fact table:
 
 ## Instructions
 
-* Create a S3 bucket to store the output
-* Create IAM credentials authorized to write to bucket you created
-
-Update `dl.cfg` with the following:
-
+* Create a S3 bucket to store the input and output
+* Extract the songs data from data folder and copy it to `<AWS_S3_BUCKET>/data/song_data`
+* Extract the logs data from data folder and copy it to `<AWS_S3_BUCKET>/data/log_data`
+* Create the folder  `<AWS_S3_BUCKET>/output/`
+* Create IAM credentials authorized to read from and write to the bucket you created
+* Update `dl.cfg` with the following:
 ```
 [AWS]
 AWS_ACCESS_KEY_ID=<your_aws_access_key_id>
 AWS_SECRET_ACCESS_KEY=<your_aws_secret_access_key>
-AWS_S3_OUTPUT=<path_for_storing_output>
+AWS_S3_BUCKET=<your_s3_bucket_name>
 ```
-
-To execute the ETL pipeline from the command line, enter the following:
-
-```
-python etl.py
-```
+* To execute the ETL pipeline from the command line, run `python etl.py` and the results will be stored at `<AWS_S3_BUCKET>/output`
